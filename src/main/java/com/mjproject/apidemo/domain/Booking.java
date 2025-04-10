@@ -21,11 +21,11 @@ public class Booking {
     private Integer agencyListingId;
     // getter and setter
 
-    public int getListingId() {
+    public int getBookingId() {
         return this.id;
     }
 
-    public void setListingId(int id) {
+    public void setBookingId(int id) {
         this.id = id;
     }
 
