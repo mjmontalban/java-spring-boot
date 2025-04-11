@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mjproject.apidemo.domain.Booking;
 import com.mjproject.apidemo.domain.Listing;
+import com.mjproject.apidemo.domain.Order;
 import com.mjproject.apidemo.services.BookingService;
 import com.mjproject.apidemo.services.ListingService;
+import com.mjproject.apidemo.services.OrderService;
 
 
 @RestController
@@ -21,6 +23,8 @@ public class DashboardController {
 
     private ListingService listingService;
     private BookingService bookingService;
+    private OrderService orderService;
+
 
     @Autowired
     public void setListingService(ListingService listingService){
@@ -30,6 +34,11 @@ public class DashboardController {
     @Autowired
     public void setBookingService(BookingService bookingService){
         this.bookingService=bookingService;
+    }
+
+    @Autowired
+    public void setOrderService(OrderService orderService){
+        this.orderService=orderService;
     }
 
     @GetMapping("/home")
@@ -50,5 +59,10 @@ public class DashboardController {
     @GetMapping("/bookings")
     public Page<Booking> getListingBookings(@RequestParam int listingId, @RequestParam int page, @RequestParam int size) {
         return this.bookingService.getBookingsByListingId(listingId, page, size);
+    }
+
+    @GetMapping("/orders")
+    public Page<Order> getListingOrders(@RequestParam int listingId, @RequestParam int page, @RequestParam int size) {
+        return this.orderService.getOrdersByListing(listingId, page, size);
     }
 }
